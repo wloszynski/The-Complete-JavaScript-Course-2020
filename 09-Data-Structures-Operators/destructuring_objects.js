@@ -21,15 +21,15 @@ const restaurant = {
       close: 24
     }
   },
-  order: function(starterIndex, mainIndex) {
+  order: function (starterIndex, mainIndex) {
     return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
   },
-  orderDelivery: function({
-                            starterIndex = 1,
-                            mainIndex = 2,
-                            time = '20:00',
-                            address
-                          }) {
+  orderDelivery: function ({
+    starterIndex = 1,
+    mainIndex = 2,
+    time = '20:00',
+    address
+  }) {
     console.log(`Order receiver ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} and ${time}`);
   }
 };
