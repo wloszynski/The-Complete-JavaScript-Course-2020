@@ -1,8 +1,8 @@
-'use strict';
+"use strict";
 
 const lufthansa = {
-  airline: 'Lufthansa',
-  iataCode: 'LH',
+  airline: "Lufthansa",
+  iataCode: "LH",
   bookings: [],
   book(flightNum, name) {
     console.log(
@@ -12,11 +12,11 @@ const lufthansa = {
   },
 };
 
-lufthansa.book(239, 'Adrian Wloszynski');
+lufthansa.book(239, "Adrian Wloszynski");
 
 const eurowings = {
-  airline: 'Eurowings',
-  iataCode: 'EW',
+  airline: "Eurowings",
+  iataCode: "EW",
   bookings: [],
 };
 
@@ -26,23 +26,23 @@ const book = lufthansa.book;
 // book(23, 'Tom Williams');
 
 // Call method
-book.call(eurowings, 23, 'Sarah Williams');
+book.call(eurowings, 23, "Sarah Williams");
 console.log(eurowings);
 
-book.call(lufthansa, 2344444, 'Mary Bllack');
+book.call(lufthansa, 2344444, "Mary Bllack");
 console.log(lufthansa);
 
 const swiss = {
-  airline: 'Swiss Air Lines',
-  iataCode: 'LX',
+  airline: "Swiss Air Lines",
+  iataCode: "LX",
   bookings: [],
 };
 
-book.call(swiss, 123, 'Tim Tom');
+book.call(swiss, 123, "Tim Tom");
 console.log(swiss);
 
 // Apply method, same as call, but it receives list of arguments
-const flightData = [583, 'George Cooper'];
+const flightData = [583, "George Cooper"];
 book.apply(swiss, flightData);
 console.log(swiss);
 
@@ -55,11 +55,11 @@ console.log(swiss);
 const bookEW = book.bind(eurowings);
 const bookLH = book.bind(lufthansa);
 const bookLX = book.bind(swiss);
-bookEW(1231, 'Toma Jomas');
+bookEW(1231, "Toma Jomas");
 console.log(eurowings);
 
 const bookEW23 = book.bind(eurowings, 23);
-bookEW23('Adrian Wloszynski');
+bookEW23("Adrian Wloszynski");
 console.log(eurowings);
 
 // With Event Listeners
@@ -71,8 +71,8 @@ lufthansa.buyPlane = function () {
 };
 
 document
-  .querySelector('.buy')
-  .addEventListener('click', lufthansa.buyPlane.bind(lufthansa));
+  .querySelector(".buy")
+  .addEventListener("click", lufthansa.buyPlane.bind(lufthansa));
 
 // Partial application
 const addTax = (rate = 10, value) => value + value * rate;
