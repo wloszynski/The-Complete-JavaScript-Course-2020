@@ -285,3 +285,34 @@ console.log(Number.isFinite(23 / 0));
 // Checking if value is integer
 console.log(Number.isInteger(23));
 console.log(Number.isInteger(23.0));
+
+console.log(Math.sqrt(4));
+console.log(4 ** (1 / 2));
+
+console.log(Math.max(5, 18, 24));
+console.log(Math.max(5, 18, "24"));
+console.log(Math.max(5, 18, "24px"));
+
+console.log(Math.PI);
+
+console.log(Math.random());
+
+const randomInt = (min, max) =>
+  Math.floor(Math.random() * (max - min) + 1 + min);
+// 0...1 -> 0...(max-min) -> min...max
+console.log(randomInt(10, 20));
+
+// Rounding integers
+// Cut the ,... part
+console.log(Math.trunc(Math.PI));
+// Rounding to the closest number
+console.log(Math.round(Math.PI));
+// Rounding up
+console.log(Math.ceil(Math.PI));
+// Rounding down
+console.log(Math.floor(Math.PI));
+
+// Rounding decimals
+// Returns string
+console.log((2.7).toFixed(0));
+console.log((2.7).toFixed(3));
