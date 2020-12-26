@@ -248,31 +248,6 @@ btnSort.addEventListener("click", function (e) {
   sorted = !sorted;
 });
 
-/////////////////////////////////////////////////
-/////////////////////////////////////////////////
-// LECTURES
+const num = 33484844.23;
 
-// Rounding decimals
-// Returns string
-console.log((2.7).toFixed(0));
-console.log((2.7).toFixed(3));
-
-console.log(5 % 2);
-console.log(5 / 2);
-
-console.log(6 % 2);
-
-const isEven = n => n % 2 === 0;
-
-console.log(isEven(20));
-
-labelBalance.addEventListener("click", function () {
-  [...document.querySelectorAll(".movements__row")].forEach(function (row, i) {
-    if (i % 2 === 0) {
-      row.style.backgroundColor = "orangered";
-    }
-    if (i % 3 === 0) {
-      row.style.backgroundColor = "blue";
-    }
-  });
-});
+console.log(new Intl.NumberFormat());
