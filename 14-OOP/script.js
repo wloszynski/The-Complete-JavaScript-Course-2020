@@ -37,3 +37,18 @@ console.log(Person.prototype.isPrototypeOf(Person));
 Person.prototype.species = "Homo Sapiens";
 console.log(adrian.hasOwnProperty("firstName"));
 console.log(adrian.hasOwnProperty("species"));
+
+console.log(adrian.__proto__);
+console.log(adrian.__proto__.__proto__);
+console.log(adrian.__proto__.__proto__.__proto__);
+
+console.dir(Person.prototype.constructor);
+
+const arr = [1, 2, 3, 1, 1, 2];
+console.log(arr.__proto__);
+
+Array.prototype.unique = function () {
+  return [...new Set(this)];
+};
+
+console.log(arr.unique());
