@@ -6,7 +6,7 @@ const Person = function (firstName, birthYear) {
 
   // Never do this
   //   this.calcAge = function(){
-  //       console.log(2037 - this.birthYear)
+  //       console.log(2020 - this.birthYear)
   //   }
 };
 
@@ -20,3 +20,20 @@ console.log(adrian);
 const matilda = new Person("Matilda", 1999);
 console.log(matilda);
 console.log(matilda instanceof Person);
+
+// Prototypes
+Person.prototype.calcAge = function () {
+  console.log(2020 - this.birthYear);
+};
+console.log(Person.prototype);
+
+adrian.calcAge();
+
+console.log(adrian.__proto__);
+
+console.log(Person.prototype.isPrototypeOf(adrian));
+console.log(Person.prototype.isPrototypeOf(Person));
+
+Person.prototype.species = "Homo Sapiens";
+console.log(adrian.hasOwnProperty("firstName"));
+console.log(adrian.hasOwnProperty("species"));
