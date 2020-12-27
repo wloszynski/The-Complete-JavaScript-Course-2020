@@ -26,12 +26,19 @@ class Person {
   get fullName() {
     return this._fullName;
   }
+
+  static hey() {
+    console.log("hey");
+    console.log(this);
+  }
 }
 
 const jessica = new Person("Jessica Davis", 1998);
 console.log(jessica);
 jessica.calcAge();
 console.log(jessica.age);
+
+Person.hey();
 
 Person.prototype.greet = function () {
   console.log(`Hey ${this.firstName}`);
