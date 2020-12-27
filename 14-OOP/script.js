@@ -1,54 +1,63 @@
 "use strict";
 
-const Person = function (firstName, birthYear) {
-  this.firstName = firstName;
-  this.birthYear = birthYear;
+// class expression
+// const Person = class {};
 
-  // Never do this
-  //   this.calcAge = function(){
-  //       console.log(2020 - this.birthYear)
-  //   }
+// class declaration
+class Person {
+  constructor(fullName, birthYear) {
+    this.fullName = fullName;
+    this.birthYear = birthYear;
+  }
+  // Methods will be added to .prototype property
+  calcAge() {
+    console.log(2020 - this.birthYear);
+  }
+
+  get age() {
+    return 2020 - this.birthYear;
+  }
+
+  set fullName(name) {
+    if (name.includes(" ")) this._fullName = name;
+    else alert(`${name} is not a full name!`);
+  }
+
+  get fullName() {
+    return this._fullName;
+  }
+}
+
+const jessica = new Person("Jessica Davis", 1998);
+console.log(jessica);
+jessica.calcAge();
+console.log(jessica.age);
+
+Person.prototype.greet = function () {
+  console.log(`Hey ${this.firstName}`);
 };
 
-const adrian = new Person("Adrian", 2000);
-console.log(adrian);
-// 1. New {} is created
-// 2. function is called, this = {}
-// 3. {} linked to prototype
-// 4. function automatically return {}
+jessica.greet();
+jessica.fullName = "tim tam";
+console.log(jessica.fullName);
 
-const matilda = new Person("Matilda", 1999);
-console.log(matilda);
-console.log(matilda instanceof Person);
+// 1. Classes are NOT hoisted
+// 2. Class are first-class citizens
+// 3. Classes are executed in strict mode
 
-// Prototypes
-Person.prototype.calcAge = function () {
-  console.log(2020 - this.birthYear);
-};
-console.log(Person.prototype);
+const account = {
+  owner: "Adrian",
+  movements: [200, 2000, 3000],
 
-adrian.calcAge();
+  get latest() {
+    return this.movements.slice(-1).pop();
+  },
 
-console.log(adrian.__proto__);
-
-console.log(Person.prototype.isPrototypeOf(adrian));
-console.log(Person.prototype.isPrototypeOf(Person));
-
-Person.prototype.species = "Homo Sapiens";
-console.log(adrian.hasOwnProperty("firstName"));
-console.log(adrian.hasOwnProperty("species"));
-
-console.log(adrian.__proto__);
-console.log(adrian.__proto__.__proto__);
-console.log(adrian.__proto__.__proto__.__proto__);
-
-console.dir(Person.prototype.constructor);
-
-const arr = [1, 2, 3, 1, 1, 2];
-console.log(arr.__proto__);
-
-Array.prototype.unique = function () {
-  return [...new Set(this)];
+  set latest(mov) {
+    this.movements.push(mov);
+  },
 };
 
-console.log(arr.unique());
+console.log(account.latest);
+
+account.latest = 50;
