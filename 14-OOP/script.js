@@ -68,3 +68,25 @@ const account = {
 console.log(account.latest);
 
 account.latest = 50;
+
+const PersonProto = {
+  calcAge() {
+    console.log(2020 - this.birthYear);
+  },
+
+  init(firstName, birthYear) {
+    this.firstName = firstName;
+    this.birthYear = birthYear;
+  },
+};
+
+const steven = Object.create(PersonProto);
+steven.name = "Steven";
+steven.birthYear = "2002";
+steven.calcAge();
+
+console.log(steven.__proto__ === PersonProto);
+
+const sarah = Object.create(PersonProto);
+sarah.init("Sarah", 1410);
+sarah.calcAge();
