@@ -1,92 +1,69 @@
 "use strict";
 
-// class expression
-// const Person = class {};
+// 1) Public fields
+// 2) Private fields
+// 3) Public methods
+// 4) Private methods
+// (there is also the static version)
 
-// class declaration
-class Person {
-  constructor(fullName, birthYear) {
-    this.fullName = fullName;
-    this.birthYear = birthYear;
-  }
-  // Methods will be added to .prototype property
-  calcAge() {
-    console.log(2020 - this.birthYear);
-  }
+class Account {
+  // Public fields (instances)
+  locale = navigator.language;
 
-  get age() {
-    return 2020 - this.birthYear;
-  }
+  // Private fields
+  #movements = [];
+  #pin;
 
-  set fullName(name) {
-    if (name.includes(" ")) this._fullName = name;
-    else alert(`${name} is not a full name!`);
-  }
+  constructor(owner, currency, pin) {
+    this.owner = owner;
+    this.currency = currency;
+    this.#pin = pin;
+    // Protected property
 
-  get fullName() {
-    return this._fullName;
+    console.log(`Thanks for opening an account, ${owner}`);
   }
 
-  static hey() {
-    console.log("hey");
-    console.log(this);
+  // Public interface
+  // 3) Public methods
+
+  getMovements() {
+    return this.#movements;
+  }
+  deposit(val) {
+    this.#movements.push(val);
+    return this;
+  }
+  withdraw(val) {
+    this.deposit(-val);
+    return this;
+  }
+
+  requestLoan(val) {
+    if (this.#approveLoan(val)) {
+      this.deposit(val);
+      console.log(`Loan approved`);
+    }
+    return this;
+  }
+
+  static helper() {
+    console.log("Helper");
+  }
+
+  // 4) Private methods
+  #approveLoan(val) {
+    return true;
   }
 }
 
-const jessica = new Person("Jessica Davis", 1998);
-console.log(jessica);
-jessica.calcAge();
-console.log(jessica.age);
+const acc1 = new Account("Jonas", "EUR", 1111);
+acc1.requestLoan("20");
+// console.log(acc1.#movements);
+console.log(acc1.getMovements());
+// console.log(requestLoan(12));
+Account.helper();
 
-Person.hey();
+// Chaining
+acc1.deposit(300).deposit(500).withdraw(35).requestLoan(25000).withdraw(500);
 
-Person.prototype.greet = function () {
-  console.log(`Hey ${this.firstName}`);
-};
-
-jessica.greet();
-jessica.fullName = "tim tam";
-console.log(jessica.fullName);
-
-// 1. Classes are NOT hoisted
-// 2. Class are first-class citizens
-// 3. Classes are executed in strict mode
-
-const account = {
-  owner: "Adrian",
-  movements: [200, 2000, 3000],
-
-  get latest() {
-    return this.movements.slice(-1).pop();
-  },
-
-  set latest(mov) {
-    this.movements.push(mov);
-  },
-};
-
-console.log(account.latest);
-
-account.latest = 50;
-
-const PersonProto = {
-  calcAge() {
-    console.log(2020 - this.birthYear);
-  },
-
-  init(firstName, birthYear) {
-    this.firstName = firstName;
-    this.birthYear = birthYear;
-  },
-};
-
-const steven = Object.create(PersonProto);
-steven.name = "Steven";
-steven.birthYear = "2002";
-steven.calcAge();
-
-console.log(steven.__proto__ === PersonProto);
-
-const sarah = Object.create(PersonProto);
-sarah.init("Sarah", 1410);
-sarah.calcAge();
+console.log(acc1.getMovements());
